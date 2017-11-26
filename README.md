@@ -122,8 +122,10 @@ A state machine is implemented to decide lane shift as given below:
 
 ## 4. Path Planning
 
-if previous size is almost empty, then use the car starting reference, else use the previous path's end point as starting reference.
-
 Use frenet coordinate, add evenly 30m spaced points ahead of the starting reference with 50 points. 
 
+Initially use the car starting reference, else use the previous path's end point as starting reference.
+
 Use Spline for smooth interpolation of points from the start point to the target.
+
+During lane change the new target lane is used to create the trajectory.
