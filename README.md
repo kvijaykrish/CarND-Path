@@ -114,11 +114,11 @@ A state machine is implemented to decide lane shift as given below:
    
 ## 3. Accelerate/Slow Down
 
-1. If any car is too close in same lane ahead of our car then slow down
+1. If any car is too close in same lane ahead of our car then decrease velocity at 3x 0.224 miles/sec
 
-2. If the velocity in less than max speed limit (49.5 miles/hr) then increase teh speed at 0.224 miles/sec
+2. If the velocity in less than max speed limit (49.5 miles/hr) then increase the velocity at 0.224 miles/sec
 
-3. During cold start or at low speed apply more acceleration (2x.224miles/sec)
+3. During cold start or at low speed apply more acceleration (2x .224miles/sec)
 
 ## 4. Path Planning
 
