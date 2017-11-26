@@ -58,7 +58,7 @@ the path has processed since last time.
 
 ## 1. Obstacle Detection using Sensor Fusion
 
-Nomencalture: LeftMost is Lane 0; Middle is Lane 1; Rightmost is Lane3
+Nomencalture: LeftMost is Lane 0; Middle is Lane 1; Rightmost is Lane 2
 
 Use the sensor fusion data to check if any obeject is within 35 meters in same lane if so set flag 'too_close' for the corresponding lane to 'TRUE'. 
 
@@ -70,19 +70,19 @@ A state machine is implemented to decide lane shift as given below:
 
 KEEP LANE: If any object in present lane prepare to change lane
    
-   if car is in right most lane: prepare for change left lane 
+   If car is in right most lane: prepare for change left lane
    
-   if car is in middle lane: Check if objects (cars) are present in the adjacent lanes. Choose the best lane without any cars in adjacent lanes
+   If car is in middle lane: Check if objects (cars) are present in the adjacent lanes, choose the best lane without any cars in adjacent lane too_close for lane change
    
-   if car is in left most lane: prepare for change rightt lane 
+   If car is in left most lane: prepare for change to right lane 
 
 PREP_LEFT/RIHGT: 
    
    Keep a timer to avoid continuous swith between states.
    
-   if no car (object) in adjacent lane, then set the lane change and go to new lane
+   If no car (object) in adjacent lane, then set the lane change and go to new lane
    
-   if objects are in adjacent lanes go back to KEEP_LANE state and reduce speed.
+   If objects are in adjacent lanes go back to KEEP_LANE state and reduce speed.
 
 CHANGE_LANE:
    
@@ -92,11 +92,11 @@ CHANGE_LANE:
    
 ## 3. Accelerate/Slow Down
 
-if any car is too close in same lane ahead of our car then slow down
+1. If any car is too close in same lane ahead of our car then slow down
 
-if the velocity in less than max speed limit (49.5 miles/hr) then increase teh speed at 0.224 miles/sec
+2. If the velocity in less than max speed limit (49.5 miles/hr) then increase teh speed at 0.224 miles/sec
 
-During cold start or at low speed apply more acceleration (2x.224miles/sec)
+3. During cold start or at low speed apply more acceleration (2x.224miles/sec)
 
 ## 4. Path Planning
 
@@ -104,4 +104,4 @@ if previous size is almost empty, then use the car starting reference, else use 
 
 Use frenet coordinate, add evenly 30m spaced points ahead of the starting reference with 50 points. 
 
-Use Spline for smooth interpolation of points from the start poin to the target.
+Use Spline for smooth interpolation of points from the start point to the target.
