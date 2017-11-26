@@ -68,18 +68,26 @@ Also check if there there are any obejcts(car) within 30 meters ahead or behind 
 
 A state machine is implemented to decide lane shift as given below:
 
-KEEP LANE:If any object in present lane prepare to change lane:
+KEEP LANE: If any object in present lane prepare to change lane
+   
    if car is in right most lane: prepare for change left lane 
+   
    if car is in middle lane: Check if objects (cars) are present in the adjacent lanes. Choose the best lane without any cars in adjacent lanes
+   
    if car is in left most lane: prepare for change rightt lane 
 
 PREP_LEFT/RIHGT: 
+   
    Keep a timer to avoid continuous swith between states.
+   
    if no car (object) in adjacent lane, then set the lane change and go to new lane
+   
    if objects are in adjacent lanes go back to KEEP_LANE state and reduce speed.
 
 CHANGE_LANE:
+   
    Enter the new lane and gradually ramp up speed to speed limit
+   
    Move to KEEP_LANE state.
    
 ## 3. Accelerate/Slow Down
