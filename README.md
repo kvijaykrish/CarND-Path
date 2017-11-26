@@ -54,7 +54,29 @@ the path has processed since last time.
 
 ["sensor_fusion"] A 2d vector of cars and then that car's [car's unique ID, car's x position in map coordinates, car's y position in map coordinates, car's x velocity in m/s, car's y velocity in m/s, car's s position in frenet coordinates, car's d position in frenet coordinates. 
 
-# Model Documentation
+## Results:
+
+The car was able to drive at least 4.32 miles without incident..
+
+![jpg](./Result/PathPlan_Result.jpg)
+
+The car drives according to the speed limit.
+
+Max Acceleration and Jerk are not Exceeded.
+
+Car does not have collisions. Car was able to slow down when traffic was ahead.
+
+![jpg](./Result/PathPlan_slowdown.jpg)
+
+The car stays in its lane, except for the time between changing lanes.
+
+The car is able to change lanes
+
+![jpg](./Result/PathPlan_LnChng.jpg)
+
+# Model Documentation: 
+
+This is a reflection on how to generate paths. Here the code model for generating paths is described in detail.
 
 ## 1. Obstacle Detection using Sensor Fusion
 
@@ -68,7 +90,7 @@ Also check if there there are any obejcts(car) within 30 meters ahead or behind 
 
 A state machine is implemented to decide lane shift as given below:
 
-KEEP LANE: If any object in present lane prepare to change lane
+### KEEP LANE: If any object in present lane prepare to change lane
    
    If car is in right most lane: prepare for change left lane
    
@@ -76,7 +98,7 @@ KEEP LANE: If any object in present lane prepare to change lane
    
    If car is in left most lane: prepare for change to right lane 
 
-PREP_LEFT/RIHGT: 
+### PREP_LEFT/RIHGT: 
    
    Keep a timer to avoid continuous swith between states.
    
@@ -84,7 +106,7 @@ PREP_LEFT/RIHGT:
    
    If objects are in adjacent lanes go back to KEEP_LANE state and reduce speed.
 
-CHANGE_LANE:
+### CHANGE_LANE:
    
    Enter the new lane and gradually ramp up speed to speed limit
    
